@@ -1,0 +1,12 @@
+#|/bin/bash
+
+./vendor/bin/sail down
+echo "" > ./storage/logs/laravel.log
+echo "" > ./storage/logs/worker.log
+echo "" > ./storage/logs/scraper.log
+./vendor/bin/sail up -d
+./vendor/bin/sail artisan migrate:refresh
+./vendor/bin/sail artisan cache:clear
+./vendor/bin/sail npm run dev
+./vendor/bin/sail artisan queue:work --sleep=3 --tries=3 --timeout=0 --max-time=0 --memory=512 
+./vendor/bin/sail down

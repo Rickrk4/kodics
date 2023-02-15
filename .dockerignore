@@ -1,0 +1,8 @@
+node-modules
+/.idea
+/.vscode
+storage/app/books/*
+storage/app/comics/*
+storage/app/cache/*
+storage/app/covers/*
+storage/logs/*
